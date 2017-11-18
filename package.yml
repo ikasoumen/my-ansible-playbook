@@ -44,8 +44,14 @@
         state: '{{ item.state | default("present") }}'
       with_items: '{{ homebrew_packages }}'
 
+    - name: set zsh as default shell for vagrant user
+      command: chsh -s '/bin/zsh' $USER
+
     - name: create nodebrew directory
       file: path=~/.nodebrew/src state=directory
 
     - name: install latest nodejs
       command: nodebrew install-binary latest
+
+    - name: export nodebrew path
+      command: export PATH=$HOME/.nodebrew/current/bin:$PATH >> ~/.zshrc
