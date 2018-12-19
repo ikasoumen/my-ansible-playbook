@@ -6,7 +6,6 @@
       - caskroom/cask
  
     homebrew_cask_packages:
-      - name: virtualbox
       - name: google-chrome
       - name: firefox
       - name: slack
@@ -17,7 +16,7 @@
       - name: git
       - name: tig
       - name: zsh
-      - name: nodebrew
+      - name: nodeenv
       - name: rbenv
  
   tasks:
@@ -47,11 +46,5 @@
     - name: set zsh as default shell for vagrant user
       command: chsh -s '/bin/zsh' $USER
 
-    - name: create nodebrew directory
-      file: path=~/.nodebrew/src state=directory
-
     - name: install latest nodejs
-      command: nodebrew install-binary latest
-
-    - name: export nodebrew path
-      command: export PATH=$HOME/.nodebrew/current/bin:$PATH >> ~/.zshrc
+      command: nodeenv install latest
