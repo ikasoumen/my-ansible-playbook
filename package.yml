@@ -18,6 +18,8 @@
       - name: zsh
       - name: nodeenv
       - name: rbenv
+      - name: mysql@5.7
+      - name: redis
  
   tasks:
     - name: homebrew update
@@ -47,4 +49,4 @@
       command: chsh -s '/bin/zsh' $USER
 
     - name: install latest nodejs
-      command: nodeenv install latest
+      command: nodeenv install
